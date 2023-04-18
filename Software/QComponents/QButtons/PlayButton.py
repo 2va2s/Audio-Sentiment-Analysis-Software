@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QPushButton
 from Software.Managers.RecorderManager import RecorderManager
 from Software.States.ButtonState import ButtonState
 
-
 class PlayButton(QPushButton):
     def __init__(self):
         super().__init__()
@@ -37,9 +36,25 @@ class PlayButton(QPushButton):
             self.timer.stop()
             self.changeState(ButtonState.FINALIZED)
             self.recorder_manager.stop()
-        else:
+            self.recorder_manager = RecorderManager(
+                "audio/pcm",
+                2,
+                128000,
+                -1,
+                QMultimedia.NormalQuality,
+                QMultimedia.ConstantBitRateEncoding,
+                "audio/x-wav")
+        elif self.state == ButtonState.FINALIZED:
             print("playing or retry")
             self.changeState(ButtonState.PLAYING)
+            self.recorder_manager.setAudioInput(self.window().audio_combo_box.currentText())  # add this line to set the audio input device
+            print(self.recorder_manager.audioInput())
+            self.recorder_manager.record()
+            self.timer.start(10000)
+        else:
+            print("playing")
+            self.changeState(ButtonState.PLAYING)
+            print(self.recorder_manager.audioInput())
             self.recorder_manager.record()
             self.timer.start(10000)
 

@@ -4,6 +4,7 @@ from PyQt5.QtMultimedia import *
 
 import os
 
+from Software.Managers.RecorderManager import RecorderManager
 from Software.QComponents.QButtons.PlayButton import PlayButton
 from Software.QComponents.QButtons.SelectButton import SelectButton
 
@@ -30,12 +31,11 @@ class WindowManager(QMainWindow):
         combo_box_layout = QHBoxLayout()
         devices = [device.deviceName() for device in QAudioDeviceInfo.availableDevices(QAudio.AudioInput)]
         # create the first combo box to display the available audio input devices
-        combo_box_layout.addWidget(SelectButton(devices))
-        combo_box_layout.addWidget(SelectButton(["Item 1", "Item 2", "Item 3"]))
-        combo_box_layout.addWidget(SelectButton(["Item 1", "Item 2", "Item 3"]))
-        combo_box_layout.addWidget(SelectButton(["Item 1", "Item 2", "Item 3"]))
-        combo_box_layout.addWidget(SelectButton(["Item 1", "Item 2", "Item 3"]))
-        combo_box_layout.addWidget(SelectButton(["Item 1", "Item 2", "Item 3"]))
+        self.audio_combo_box = SelectButton(devices, "background-color:white;color:black")
+        self.audio_combo_box.deviceSelected.connect(self.changeRecordingDevice)
+
+        combo_box_layout.addWidget(self.audio_combo_box)
+
 
         # add the two layouts to a vertical layout
         v_layout = QVBoxLayout()
@@ -51,3 +51,6 @@ class WindowManager(QMainWindow):
 
         # show the window
         self.show()
+
+    def changeRecordingDevice(self, device):
+        self.button.recorder_manager.setAudioInput(device)
