@@ -4,7 +4,7 @@ import numpy as np
 
 
 class Vocal(BaseModel):
-    features: dict
+    features: list[list[float]]
 
     # def process_mfccs(self, mfccs):
         # perform some processing on the MFCCs
