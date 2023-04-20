@@ -1,6 +1,6 @@
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtMultimedia import QMultimedia
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton, QLabel
 
 from Software.Managers.RecorderManager import RecorderManager
 from Software.States.ButtonState import ButtonState
@@ -22,13 +22,15 @@ class PlayButton(QPushButton):
             QMultimedia.ConstantBitRateEncoding,
             "audio/x-wav")
         self.timer = QTimer(self)
-        self.timer.setInterval(1000)  # interval of 1 second
+        self.timer.setInterval(1000)
         self.timer.timeout.connect(self.handle_timeout)
+        self.recorder_manager.durationChanged.connect(self.handle_durationChanged)
 
     def handle_timeout(self):
         print("timer timeout")
         self.timer.stop()
         self.recorder_manager.stop()
+        self.window().timer_label.hide()
         self.changeState(ButtonState.FINALIZED)
     def click(self):
         if self.state == ButtonState.PLAYING:
@@ -45,20 +47,26 @@ class PlayButton(QPushButton):
                 QMultimedia.ConstantBitRateEncoding,
                 "audio/x-wav")
         elif self.state == ButtonState.FINALIZED:
-            print("playing or retry")
+            print("retry")
             self.changeState(ButtonState.PLAYING)
-            self.recorder_manager.setAudioInput(self.window().audio_combo_box.currentText())  # add this line to set the audio input device
+            self.recorder_manager.setAudioInput(self.window().audio_combo_box.currentText())
             print(self.recorder_manager.audioInput())
             self.recorder_manager.record()
+            self.recorder_manager.durationChanged.connect(self.handle_durationChanged)
+            self.window().timer_label.setText("Time: 0")
+            self.window().timer_label.show()
             self.timer.start(10000)
         else:
             print("playing")
             self.changeState(ButtonState.PLAYING)
             print(self.recorder_manager.audioInput())
             self.recorder_manager.record()
+            self.window().timer_label.show()
             self.timer.start(10000)
 
     def changeState(self, buttonstate):
         self.setText(buttonstate.value)
         self.state = buttonstate
 
+    def handle_durationChanged(self, progress):
+        self.window().timer_label.setText("Time: " + str(progress // 1000))
