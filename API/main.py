@@ -18,9 +18,8 @@ import librosa
 import requests
 
 # 2. Create the app object
-app = FastAPI()
-#picke_in = open('mlp_classifier.model', "rb")
-#model = pickle.load(picke_in)
+app = FastAPI(title="JPWAV-AI prediction REST API ")
+
 with open('mlp_classifier.pkl', 'rb') as pickle_in:
     model = pickle.load(pickle_in)
 
