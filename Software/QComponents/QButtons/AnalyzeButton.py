@@ -82,11 +82,11 @@ class AnalyzeButton(QPushButton):  # Defining a custom PyQt button component
                     json.dump(data, f)
 
             # Change the state of the button object to 'inactive' and hide the dialog
-            self.window().button.changeState(ButtonState.INACTIVE)
+            self.window().button.change_state(ButtonState.INACTIVE)
             self.hide()
 
         # If the user clicked 'Discard' button or closed the dialog
         elif result == QMessageBox.RejectRole:
             # Change the state of the button object to 'inactive' and hide the dialog
-            self.window().button.changeState(ButtonState.INACTIVE)
+            self.window().button.change_state(ButtonState.INACTIVE)
             self.hide()

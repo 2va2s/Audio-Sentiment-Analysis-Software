@@ -1,17 +1,17 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
-
-import os
-
-import pickle
-from Software.Managers.RecorderManager import RecorderManager
 from Software.QComponents.QButtons.AnalyzeButton import AnalyzeButton
 from Software.QComponents.QButtons.PlayButton import PlayButton
 from Software.QComponents.QButtons.SelectButton import SelectButton
+import pickle
 
 
 class WindowManager(QMainWindow):
+    """
+    MainWindow
+    """
+
     def __init__(self):
         super().__init__()
         with open('./mlp_classifier.pkl', 'rb') as pickle_in:
@@ -49,7 +49,7 @@ class WindowManager(QMainWindow):
         devices = [device.deviceName() for device in QAudioDeviceInfo.availableDevices(QAudio.AudioInput)]
         # create the first combo box to display the available audio input devices
         self.audio_combo_box = SelectButton(devices, "background-color:white;color:black")
-        self.audio_combo_box.device_selected.connect(self.changeRecordingDevice)
+        self.audio_combo_box.device_selected.connect(self.change_recording_device)
 
         combo_box_layout.addWidget(self.audio_combo_box)
 
@@ -70,6 +70,10 @@ class WindowManager(QMainWindow):
         # show the window
         self.show()
 
-
-    def changeRecordingDevice(self, device):
+    def change_recording_device(self, device):
+        """
+        Change Recording Device
+        :param device:
+        :return:
+        """
         self.button.recorder_manager.setAudioInput(device)
