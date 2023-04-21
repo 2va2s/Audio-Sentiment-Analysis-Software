@@ -22,7 +22,6 @@ class PlayButton(QPushButton):
             QMultimedia.ConstantBitRateEncoding,
             "audio/x-wav")
         self.timer = QTimer(self)
-        self.timer.setInterval(1000)
         self.timer.timeout.connect(self.handle_timeout)
         self.recorder_manager.durationChanged.connect(self.handle_durationChanged)
 
@@ -32,6 +31,8 @@ class PlayButton(QPushButton):
         self.recorder_manager.stop()
         self.window().timer_label.hide()
         self.changeState(ButtonState.FINALIZED)
+        self.window().analyze_button.show()
+
     def click(self):
         if self.state == ButtonState.PLAYING:
             print("stop")
@@ -46,6 +47,8 @@ class PlayButton(QPushButton):
                 QMultimedia.NormalQuality,
                 QMultimedia.ConstantBitRateEncoding,
                 "audio/x-wav")
+            self.window().timer_label.hide()
+            self.window().analyze_button.show()
         elif self.state == ButtonState.FINALIZED:
             print("retry")
             self.changeState(ButtonState.PLAYING)
@@ -55,6 +58,7 @@ class PlayButton(QPushButton):
             self.recorder_manager.durationChanged.connect(self.handle_durationChanged)
             self.window().timer_label.setText("Time: 0")
             self.window().timer_label.show()
+            self.window().analyze_button.hide()
             self.timer.start(10000)
         else:
             print("playing")
@@ -62,6 +66,7 @@ class PlayButton(QPushButton):
             print(self.recorder_manager.audioInput())
             self.recorder_manager.record()
             self.window().timer_label.show()
+            self.window().analyze_button.hide()
             self.timer.start(10000)
 
     def changeState(self, buttonstate):

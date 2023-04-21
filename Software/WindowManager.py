@@ -5,6 +5,7 @@ from PyQt5.QtMultimedia import *
 import os
 
 from Software.Managers.RecorderManager import RecorderManager
+from Software.QComponents.QButtons.AnalyzeButton import AnalyzeButton
 from Software.QComponents.QButtons.PlayButton import PlayButton
 from Software.QComponents.QButtons.SelectButton import SelectButton
 
@@ -37,8 +38,10 @@ class WindowManager(QMainWindow):
         h_layout2 = QHBoxLayout()
         h_layout2.addStretch()
         h_layout2.addWidget(self.button)
+        self.analyze_button = AnalyzeButton()
+        h_layout2.addWidget(self.analyze_button)
         h_layout2.addStretch()
-
+        self.analyze_button.hide()
         # create and add the QComboBox
         combo_box_layout = QHBoxLayout()
         devices = [device.deviceName() for device in QAudioDeviceInfo.availableDevices(QAudio.AudioInput)]
