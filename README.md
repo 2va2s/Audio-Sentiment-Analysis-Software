@@ -67,6 +67,6 @@ Data Science:
     
 
 ## ➤ License
-No license provided, thank to anyone whose work has inspired us !
-        
-        
+No license provided.
+
+# Thank to anyone whose work has inspired us ! ❤       
