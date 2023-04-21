@@ -15,7 +15,7 @@ class PlayButton(QPushButton):
         self.clicked.connect(self.click)
         self.recorder_manager = RecorderManager(
             "audio/pcm",
-            2,
+            8000,
             128000,
             -1,
             QMultimedia.NormalQuality,
@@ -41,7 +41,7 @@ class PlayButton(QPushButton):
             self.recorder_manager.stop()
             self.recorder_manager = RecorderManager(
                 "audio/pcm",
-                2,
+                8000,
                 128000,
                 -1,
                 QMultimedia.NormalQuality,

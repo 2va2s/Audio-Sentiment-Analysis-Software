@@ -23,16 +23,6 @@ class RecorderManager(QAudioRecorder):
         self.setEncodingSettings(settings, QVideoEncoderSettings(), selected_container)
         now = datetime.now()
         dt_string = now.strftime("%Y-%m-%d-%H-%M-%S")
-        filename = os.path.join(CURRENT_DIR, os.path.realpath("./Records/" + dt_string))
-        print(filename)
-        self.setOutputLocation(QUrl.fromLocalFile(filename))
-
-        """
-        json du resultat de l'analyse
-        {
-            "file":"2023-04-17-17-55-18",
-            "result":"angry",
-            "paramètres": {
-                "chroma":"1",
-            }
-        }"""
+        self.filename = os.path.join(CURRENT_DIR, os.path.realpath("./Records/" + dt_string))
+        self.test_file = QUrl.fromLocalFile(self.filename)
+        self.setOutputLocation(QUrl.fromLocalFile(self.filename))

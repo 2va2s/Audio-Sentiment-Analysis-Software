@@ -20,7 +20,7 @@ import requests
 # 2. Create the app object
 app = FastAPI(title="JPWAV-AI prediction REST API ")
 
-with open('mlp_classifier.pkl', 'rb') as pickle_in:
+with open('../Software/mlp_classifier.pkl', 'rb') as pickle_in:
     model = pickle.load(pickle_in)
 
 

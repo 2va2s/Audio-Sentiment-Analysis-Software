@@ -4,6 +4,7 @@ from PyQt5.QtMultimedia import *
 
 import os
 
+import pickle
 from Software.Managers.RecorderManager import RecorderManager
 from Software.QComponents.QButtons.AnalyzeButton import AnalyzeButton
 from Software.QComponents.QButtons.PlayButton import PlayButton
@@ -13,7 +14,8 @@ from Software.QComponents.QButtons.SelectButton import SelectButton
 class WindowManager(QMainWindow):
     def __init__(self):
         super().__init__()
-
+        with open('./mlp_classifier.pkl', 'rb') as pickle_in:
+            self.model = pickle.load(pickle_in)
         # create a label for the title
         title_label = QLabel("JPWAV AI V0.0.1", self)
         title_label.setAlignment(Qt.AlignCenter)
