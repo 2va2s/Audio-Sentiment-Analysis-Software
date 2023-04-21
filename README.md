@@ -6,10 +6,11 @@
   
 This is a project aimed at setting up an application allowing the analysis of emotions of a recorded voice based on a large set of audio data.
 
-The repo is composed of 3 main parts: **Data Science**, **API** and **Software**
-Each part work independently and the union of those 3 parts is the **Software**
+The repo is composed of 3 main parts: **Data Science**, **API** and **Software**.
 
-The progress of the part devoted to the deployment of the api in *Azure* is available on this secondary repo: https://github.com/JeanPhilippeCaetano/Audio-Sentiment-Analysis-Software-Deployment
+Each part work independently and the union of those 3 parts is the **Software**.
+
+The progress of the part devoted to the deployment of the api in *Azure* is available on this secondary repo: https://github.com/JeanPhilippeCaetano/Audio-Sentiment-Analysis-Software-Deployment.
 
 ## 🛠️ Tech Stack
 - [Python](https://www.python.org/)
