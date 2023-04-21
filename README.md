@@ -37,7 +37,7 @@ POST /predict
 ```
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `features`   | `list[list[float]]`  (shape: ( ,40)   | **Required**. Melscale (MFCC) of audio file |
+| `features`   | `list[list[float]]`  shape: ( ,40)   | **Required**. Melscale (MFCC) of audio file |
 ```http
 GET /docs
 ```
