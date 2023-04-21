@@ -1,11 +1,7 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
 import sys
-import os
-from PyQt5.QtGui import QFont
 
-from WindowManager import WindowManager
+from Software.Managers.WindowManager import WindowManager
 
 
 def main():

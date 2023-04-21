@@ -65,6 +65,8 @@ class PlayButton(QPushButton):
             self.changeState(ButtonState.PLAYING)
             print(self.recorder_manager.audioInput())
             self.recorder_manager.record()
+            self.recorder_manager.durationChanged.connect(self.handle_durationChanged)
+            self.window().timer_label.setText("Time: 0")
             self.window().timer_label.show()
             self.window().analyze_button.hide()
             self.timer.start(10000)

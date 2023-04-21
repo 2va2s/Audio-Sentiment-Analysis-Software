@@ -49,7 +49,7 @@ class WindowManager(QMainWindow):
         devices = [device.deviceName() for device in QAudioDeviceInfo.availableDevices(QAudio.AudioInput)]
         # create the first combo box to display the available audio input devices
         self.audio_combo_box = SelectButton(devices, "background-color:white;color:black")
-        self.audio_combo_box.deviceSelected.connect(self.changeRecordingDevice)
+        self.audio_combo_box.device_selected.connect(self.changeRecordingDevice)
 
         combo_box_layout.addWidget(self.audio_combo_box)
 

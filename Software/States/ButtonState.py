@@ -1,7 +1,6 @@
 from enum import Enum
-from functools import partial
 
-class ButtonState(Enum):
+class ButtonState(Enum): # Enumeration for Button States
     INACTIVE = "RECORD"
     PLAYING = "STOP"
     FINALIZED = "RETRY"
