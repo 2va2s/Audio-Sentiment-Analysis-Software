@@ -52,6 +52,11 @@ Data Science:
 
 `Open our notebooks and have fun ;)`
 
+The dataset used for our ML models of this project is part of ***The Ryerson Audio-Visual Database of Emotional Speech and Song (RAVDESS)*** provided by [Zenodo](https://zenodo.org/record/1188976#.ZEL6UnZByUk), huge thank to them !
+
+It contains 1440 files, 24 professional actors (12 female, 12 male), vocalizing two lexically-matched statements in a neutral North American accent (60 trials per actor x 24 actors). Speech emotions includes calm, happy, sad, angry, fearful, surprise, and disgust expressions. Each expression is produced at two levels of emotional intensity (normal, strong), with an additional neutral expression.
+https://www.kaggle.com/datasets/uwrfkaggler/ravdess-emotional-speech-audio?group=bookmarked
+
 
 
 
