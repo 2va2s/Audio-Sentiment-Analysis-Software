@@ -24,11 +24,11 @@ The progress of the part devoted to the deployment of the api in *Azure* is avai
 ## 🛠️ Install Dependencies
 Go in the folder of the part that you want to run (between **Data**, **API** and **Software**) and install dependencies through the requirements.txt included in each parts.
 
-### Software:
+### Software (from /Software/):
 ```bash
 `Python3 run main.py`
 ```
-### Run API in local:
+### Run API in local (from /API/):
 ```bash
 `uvicorn main:app --reload`
 ```
